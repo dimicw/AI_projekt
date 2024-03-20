@@ -9,7 +9,7 @@
 Wykonanie polecenia
 - Dla windows
     ```sh
-    python -m venv venv
+    python -m venv .venv
     ```
 - Dla Unix
     ```sh
@@ -28,6 +28,7 @@ Uruchomienie wirtualnej zmiennej środowiskowej (venv)
         ```
 Instalacja Django
 ```sh
+pip install -r requirements.txt
 pip install django
 ```
 Instalacja Pillow  
