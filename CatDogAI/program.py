@@ -1,6 +1,22 @@
 import tensorflow 
+import os
 from matplotlib import pyplot
 from matplotlib.image import imread
+from tensorflow.keras.optimizers import SGD
+from keras.models import Sequential
+from keras.layers import Conv2D
+from keras.layers import MaxPooling2D
+from keras.layers import Flatten
+from keras.layers import Dense
+from keras.layers import Dropout
+from os import makedirs
+from os import listdir
+from os.path import join
+from os.path import isfile
+from shutil import copyfile
+from random import seed
+from random import random
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 folder = "images/train/"
 
@@ -19,13 +35,6 @@ for i in range(3):
   pyplot.show()
 
 
-from os import makedirs
-from os import listdir
-from os.path import join
-from os.path import isfile
-from shutil import copyfile
-from random import seed
-from random import random
 
 dataset_home = 'images/'
 subdirs = ['train/', 'test/']
@@ -54,16 +63,9 @@ for file in listdir(src_directory):
             copyfile(src, dst)
 
 
-from tensorflow.keras.optimizers import SGD
-from keras.models import Sequential
-from keras.layers import Conv2D
-from keras.layers import MaxPooling2D
-from keras.layers import Flatten
-from keras.layers import Dense
-from keras.layers import Dropout
+
 
 def define_model():
-    model = Sequential()
     model = Sequential()
 
     model.add(Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', 
@@ -80,7 +82,6 @@ def define_model():
 model = define_model()
 
 
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 datagen = ImageDataGenerator(rescale=1.0/255.0)
 
 batch_size = 64
@@ -89,7 +90,6 @@ train_it = datagen.flow_from_directory(dataset_home + 'train/',
 test_it = datagen.flow_from_directory(dataset_home + 'test/',
     class_mode='binary', batch_size=64, target_size=(200, 200))
 
-import os
 
 train_subdirs = os.listdir(dataset_home + 'train/')
 test_subdirs = os.listdir(dataset_home + 'test/')
