@@ -8,3 +8,4 @@ pandas
 jupyter
 openai==0.28
 python-dotenv
+genai
